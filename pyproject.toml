@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "classification-format"
+version = "0.0.1"
+authors = [
+  { name = "Ryuto Yoshida" },
+]
+description = "Export single-label and multi-label image classification annotations to ImageFolder, CSV, Hugging Face, Pascal VOC and Open Images formats."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/ry-yoshida-dev/ClassificationFormat"
+"Bug Tracker" = "https://github.com/ry-yoshida-dev/ClassificationFormat/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "mypy", "basedpyright", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+classification_format = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.mypy]
+strict = true
+mypy_path = "src"
+files = ["src", "tests"]
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "N"]
